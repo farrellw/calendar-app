@@ -7,7 +7,6 @@ function initialPageLoad() {
 }
 
 function loadMonthView(date) {
-	console.log("In here")
 	$('.calendar').empty();
 	$('.calendar').data("type", "month");
 	var month = date.getMonth() + 1;
@@ -19,15 +18,23 @@ function loadMonthView(date) {
 	var daysIntoWeek = startDate.getDay()
 	daysToDisplay = daysInMonth(month, daysByMonth);
 	dateStart = 1 - daysIntoWeek;
+	$('.month-label').text(monthNames[month - 1] + " - " + year)
+	$('.calendar').data('month', month);
+	$('.calendar').data('date', date);
+	$('.calendar').data('year', year);
+	$('.calendar').attr('data-month', month);
+	$('.calendar').attr('data-date', date);
+	$('.calendar').attr('data-year', year);
 	$('.calendar').append("<table class='month-display'></table>");
 	monthDisplay = $('.calendar').children().first();
-	console.log("Ready to append")
 	for (var i = 0; i < 6; i++) {
 		monthDisplay.append("<tr class='month-row'></tr>")
 		monthRow = monthDisplay.find("tr").last();
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
-				monthRow.append("<td class='calendar-cell'>" + dateStart + "</td>")
+				var dateToCheckEvents = month + " " + dateStart + ", " + year
+				console.log(dateToCheckEvents);
+				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>")
 				dateStart = dateStart + 1
 			}
 			else {
@@ -50,6 +57,22 @@ function daysInMonth(month, datePossibilities) {
 		return 31
 	}
 }
+
+const monthNames = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+]
+
 
 const daysByMonth = {
 	4: 30,
