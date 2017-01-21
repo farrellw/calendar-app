@@ -107,8 +107,6 @@ function switchToWeeklyView(inputCell){
 		inputCell = inputCell - 1
 		var selector = ".calendar td:eq("+ inputCell + ")"
 		var $object = $(selector);
-		console.log("Object selected next")
-		console.log($object.text());
 	} else {
 		var $object = $(this);
 	}
