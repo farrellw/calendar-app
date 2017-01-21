@@ -6,8 +6,37 @@ $(document).ready(function() {
 });
 
 function navigate() {
-	console.log("navigated");
+	var attachedClass = $(this).attr("class");
+	var typeOfView = $('.calendar').data("type")
+	if (typeOfView == "month") {
+		var currentMonth = $('.calendar').data("month");
+		var currentYear = $('.calendar').data("year");
+		if (attachedClass == "next") {
+			if (currentMonth <= 11) {
+				var monthToDisplay = currentMonth + 1;
+				var yearToDisplay = currentYear;
+			} else {
+				var monthToDisplay = 1;
+				var yearToDisplay = currentYear + 1;
+			}
+			var dateToSwitch = monthToDisplay + ' 1, ' + yearToDisplay;
+			loadMonthView(new Date(dateToSwitch));
+		}else if (attachedClass == "previous") {
+			if (currentMonth <= 1) {
+				var monthToDisplay = 12;
+				var yearToDisplay = currentYear - 1;
+			} else {
+				var monthToDisplay = currentMonth - 1;
+				var yearToDisplay = currentYear;
+			}
+			var dateToSwitch = monthToDisplay + ' 1, ' + yearToDisplay;
+			loadMonthView(new Date(dateToSwitch));
+		}
+	}else if (typeOfView == 'week') {
+		
+	}
 }
+
 function changeView() {
 	var switchTo = $(this).data("type");
 	var month = $('.calendar').data("month");
