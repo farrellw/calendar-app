@@ -1,9 +1,13 @@
 $(document).ready(function() {
 	initialPageLoad();
 	$('.calendar').on('click', '.calendar-cell', switchToWeeklyView);
+	$('.navigation-buttons').on('click', 'button', navigate);
 	$('.change-view-buttons').on('click', 'button', changeView);
 });
 
+function navigate() {
+	console.log("navigated");
+}
 function changeView() {
 	var switchTo = $(this).data("type");
 	var month = $('.calendar').data("month");
