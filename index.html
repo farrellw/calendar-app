@@ -5,21 +5,17 @@
 	<link rel="stylesheet" type="text/css" href="application.css">
 </head>
 <body>
-
 	<div class="navigation-buttons">
 		<button class='previous'>Previous</button>
 		<h3 class='month-label'></h3>
 		<button class='next'>Next</button>
 	</div>
-
-	<div class="calendar"> 
+	<div class="calendar" data-type="month" data-month="0" data-year="2017" data-date="1"> 
 	</div>
-	
 	<div class="change-view-buttons">
-		<button data-type="week">Change to Week</button>
-		<button data-type="month">Change to Month</button>
+		<button class="change-view-button" data-type="week">Change to Week</button>
+		<button class="change-view-button" data-type="month">Change to Month</button>
 	</div>
-
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="application.js"></script>
