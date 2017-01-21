@@ -37,18 +37,11 @@ function navigate() {
 		var currentYear = $('.calendar').data("year");
 		var currentDay = $('.calendar table').find('td').first();
 		var currentDayNumber = parseInt(currentDay.text()) || 0;
-		console.log(currentDayNumber);
 		var firstOfMonth = currentMonth + ' 1,' + currentYear;
 		var startDate = new Date(firstOfMonth);
 		var daysIntoWeek = startDate.getDay();
 		var currentIndex = currentDayNumber + daysIntoWeek;
-		console.log("Current Index Follows");
-		console.log(currentIndex);
-		console.log("Current Month Follows")
-		console.log(currentMonth);
 		var totalDays = daysInMonth(currentMonth, daysByMonth);
-		console.log("Total days next")
-		console.log(totalDays);
 		if (attachedClass == "next") {
 			// Keep track of index
 			// Keep track of day #
@@ -69,19 +62,15 @@ function navigate() {
 			}
 			var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 		} else if (attachedClass == "previous") {
-			var targetIndex = currentIndex - 7
-			console.log("Target Index Follows");
-			console.log(targetIndex);
+			var targetIndex = currentIndex - 7;
 			targetDayNumber = currentDayNumber - 7
 			if (targetDayNumber >= 1) {
 
 			} else if (targetIndex >= 1 && targetDayNumber < 0) {
-				console.log("In middle loop")
 				targetDayNumber = 1;
 				targetIndex = daysIntoWeek;
 
 			}else {
-				console.log("Going back a month");
 				currentMonth = currentMonth - 1;
 				if (currentMonth < 1) {
 					currentMonth = 12;
@@ -91,18 +80,11 @@ function navigate() {
 				firstOfMonth = currentMonth + " 1, " + currentYear;
 				var startDate = new Date(firstOfMonth);
 				var daysIntoWeek = startDate.getDay();
-				console.log("How many days into week we have");
-				console.log(daysIntoWeek);
 				targetIndex = parseInt(daysIntoWeek) + targetDayNumber;
 			}
 			var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 		}
-		console.log("Date to switch there is next:")
-		console.log(dateToSwitch);
 		loadMonthView(new Date(dateToSwitch));
-		// currentDayNumber = parseInt(currentDayNumber) + 7;
-		console.log("Target index is next:")
-		console.log(targetIndex);
 		switchToWeeklyView(targetIndex);
 	}
 }
