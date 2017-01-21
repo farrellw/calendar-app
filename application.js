@@ -1,6 +1,49 @@
 $(document).ready(function() {
 	initialPageLoad();
+	$('.calendar').on('click', '.calendar-cell', switchToWeeklyView);
+	$('.change-view-buttons').on('click', 'button', changeView);
 });
+
+function changeView() {
+	var switchTo = $(this).data("type");
+	var month = $('.calendar').data("month");
+	var year = $('.calendar').data("year");
+	if (switchTo == "week") {
+		switchToWeeklyView(1);
+
+	} else if (switchTo == "month") {
+		var dateToSwitch = month + " 1, " + year;
+		loadMonthView(new Date(dateToSwitch));
+	}
+}
+
+function switchToWeeklyView(inputCell){
+	if (inputCell > 0 && inputCell <= 36) {
+		inputCell = inputCell - 1
+		var selector = ".calendar td:eq("+ inputCell + ")"
+		var $object = $(selector);
+		console.log("Object selected next")
+		console.log($object.text());
+	} else {
+		var $object = $(this);
+	}
+	// $('.calendar').attr('data-date', date);
+	var month = $('.calendar').data("month");
+	var year = $('.calendar').data("year");
+	var dayOfMonth = $object.text();
+	var week = $object.parent();
+
+	$('.calendar').empty();
+	$('.calendar').data("type", "week");
+	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>")
+	var table = $('.calendar').children().first()
+	table.prepend("<tr class='week-headers'></tr>")
+	calendarHeaders = table.find("tr").first();
+	for (var i = 0; i < 7; i++) {
+		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
+	}
+	table.append(week);
+}
 
 function initialPageLoad() {
 	loadMonthView(new Date());
@@ -72,7 +115,6 @@ const monthNames = [
 	"November",
 	"December",
 ]
-
 
 const daysByMonth = {
 	4: 30,
