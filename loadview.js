@@ -1,30 +1,3 @@
-function loadWeeklyView(inputCell){
-	console.log("in weekly view")
-	if (inputCell > 0 && inputCell <= 36) {
-		inputCell = inputCell - 1
-		var selector = ".calendar td:eq("+ inputCell + ")"
-		var $object = $(selector);
-	} else {
-		var $object = $(this);
-	}
-	// $('.calendar').attr('data-date', date);
-	var month = $('.calendar').data("month");
-	var year = $('.calendar').data("year");
-	var dayOfMonth = $object.text();
-	var week = $object.parent();
-
-	$('.calendar').empty();
-	$('.calendar').data("type", "week");
-	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>")
-	var table = $('.calendar').children().first()
-	table.prepend("<tr class='week-headers'></tr>")
-	calendarHeaders = table.find("tr").first();
-	for (var i = 0; i < 7; i++) {
-		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
-	}
-	table.append(week);
-}
-
 function initialPageLoad() {
 	loadMonthView(new Date());
 }
@@ -69,4 +42,30 @@ function loadMonthView(date) {
 	for (var i = 0; i < 7; i++) {
 		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>")
 	}
+}
+
+function loadWeeklyView(inputCell){
+	if (inputCell > 0 && inputCell <= 36) {
+		inputCell = inputCell - 1;
+		var selector = ".calendar td:eq("+ inputCell + ")";
+		var $object = $(selector);
+	} else {
+		var $object = $(this);
+	}
+	// $('.calendar').attr('data-date', date);
+	var month = $('.calendar').data("month");
+	var year = $('.calendar').data("year");
+	var dayOfMonth = $object.text();
+	var week = $object.parent();
+
+	$('.calendar').empty();
+	$('.calendar').data("type", "week");
+	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
+	var table = $('.calendar').children().first();
+	table.prepend("<tr class='week-headers'></tr>");
+	calendarHeaders = table.find("tr").first();
+	for (var i = 0; i < 7; i++) {
+		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
+	}
+	table.append(week);
 }
