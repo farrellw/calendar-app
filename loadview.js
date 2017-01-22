@@ -8,39 +8,38 @@ function loadMonthView(date) {
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 	var day = date.getDay();
-	console.log(day);
 	var date = date.getDate();
 	var firstOfMonth = month + ' 1,' + year;
-	var startDate = new Date(firstOfMonth)
-	var daysIntoWeek = startDate.getDay()
+	var startDate = new Date(firstOfMonth);
+	var daysIntoWeek = startDate.getDay();
 	daysToDisplay = daysInMonth(month, daysByMonth);
 	dateStart = 1 - daysIntoWeek;
-	$('.month-label').text(monthNames[month - 1] + " - " + year)
+	$('.month-label').text(monthNames[month - 1] + " - " + year);
 	$('.calendar').data('month', month);
 	$('.calendar').data('date', date);
 	$('.calendar').data('year', year);
 	$('.calendar').append("<table class='month-display'></table>");
 	monthDisplay = $('.calendar').children().first();
 	for (var i = 0; i < 6; i++) {
-		monthDisplay.append("<tr class='month-row'></tr>")
+		monthDisplay.append("<tr class='month-row'></tr>");
 		monthRow = monthDisplay.find("tr").last();
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
-				var dateToCheckEvents = month + " " + dateStart + ", " + year
+				var dateToCheckEvents = month + " " + dateStart + ", " + year;
 				// console.log(dateToCheckEvents);
-				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>")
-				dateStart = dateStart + 1
+				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>");
+				dateStart = dateStart + 1;
 			}
 			else {
-				monthRow.append("<td class='calendar-cell'></td>")
-				dateStart = dateStart + 1
+				monthRow.append("<td class='calendar-cell'></td>");
+				dateStart = dateStart + 1;
 			}
 		}
 	}
 	monthDisplay.prepend("<tr class='month-headers'></tr>")
 	calendarHeaders = monthDisplay.find("tr").first();
 	for (var i = 0; i < 7; i++) {
-		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>")
+		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
 	}
 }
 

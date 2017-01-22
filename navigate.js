@@ -19,7 +19,7 @@ function changeWeek(direction) {
 	var currentIndex = currentDayNumber + daysIntoWeek;
 	var totalDays = daysInMonth(currentMonth, daysByMonth);
 	if (direction == "next") {
-		var targetIndex = currentIndex += 7
+		var targetIndex = currentIndex += 7;
 		targetDayNumber = currentDayNumber + 7;
 		if (targetDayNumber < totalDays) {
 			
@@ -36,7 +36,7 @@ function changeWeek(direction) {
 		var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 	} else if (direction == "previous") {
 		var targetIndex = currentIndex - 7;
-		targetDayNumber = currentDayNumber - 7
+		targetDayNumber = currentDayNumber - 7;
 		if (targetDayNumber >= 1) {
 
 		} else if (targetIndex >= 1 && targetDayNumber < 0) {
