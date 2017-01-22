@@ -27,15 +27,21 @@ table td{
 
 td .cell-header {
     height: 10%;
+    padding-bottom: 4px;
 }
 
 td .cell-body {
     height: 90%;
+    padding-top: 2px
 }
 
 h3 {
     text-align: center;
     display: inline-block;
+}
+
+.cell-body {
+    text-align: center;
 }
 
 .calendar {

@@ -11,7 +11,7 @@ function navigate() {
 function changeWeek(direction) {
 	var currentMonth = $('.calendar').data("month");
 	var currentYear = $('.calendar').data("year");
-	var currentDay = $('.calendar table').find('td').first();
+	var currentDay = $('.calendar table').find('.cell-header').first();
 	var currentDayNumber = parseInt(currentDay.text()) || 0;
 	var firstOfMonth = currentMonth + ' 1,' + currentYear;
 	var startDate = new Date(firstOfMonth);
