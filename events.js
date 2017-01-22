@@ -15,4 +15,20 @@ var eventObjectLiteral = {
 
 }
 
-
+function addEvent() {
+	var inputBox = $(this).parent().find('input')
+	var inputText = inputBox.val();
+	inputBox.val('');
+	if (inputText) {
+		var listOfEvents = $(this).closest('.calendar-cell').find('ul');
+		listOfEvents.append("<li>" + inputText + "</>");
+		var weekHolder = $(this).closest('.week-display');
+		var fullDate = weekHolder.data('monthval') + " " + $(this).closest('.calendar-cell').data('date') + ", " + weekHolder.data('yearval');
+		var eventObject = eventObjectLiteral[fullDate];
+		if (!eventObject) {
+			eventObjectLiteral[fullDate] = new DaysEvents();
+			var eventObject = eventObjectLiteral[fullDate];
+		}
+		eventObject.addEvent(inputText);
+	}
+}

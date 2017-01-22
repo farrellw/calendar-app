@@ -74,10 +74,9 @@ function loadWeeklyView(inputCell){
 	var daysIntoWeek = startDate.getDay() + 1;
 	table.prepend("<tr class='week-view-row'></tr>");
 	var weekRow = table.find("tr").first();
-	console.log("Am I in a loop?")
 	for (var i = 0; i < 7; i++) {
 		var dayOfMonth = firstDayOfWeek + i;
-		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div></td>");
+		weekRow.append("<td class='calendar-cell' data-date=" + dayOfMonth + "><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div><div class='update-events'><input type='text' name='new-event'><br><button class='add-event'>Add Event</button></div></td>");
 		var eventHolder = weekRow.find('ul').last()
 		var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
 		if (eventObjectLiteral[dateToCheckEvents]) {
@@ -88,5 +87,6 @@ function loadWeeklyView(inputCell){
 		for (var j = 0; j < events.length; j++) {
 			eventHolder.append("<li>" + events[j] + "</>");
 		}
+
 	}
 }

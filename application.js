@@ -1,8 +1,9 @@
 $(document).ready(function() {
 	initialPageLoad();
-	$('.calendar').on('click', '.calendar-cell', loadWeeklyView);
+	$('.calendar').on('dblclick', '.calendar-cell', loadWeeklyView);
 	$('.navigation-buttons').on('click', 'button', navigate);
 	$('.change-view-buttons').on('click', 'button', changeView);
+	$('.calendar').on('click', '.add-event', addEvent)
 });
 
 function changeView() {
