@@ -38,7 +38,7 @@ function loadMonthView(date) {
 				dateStart = dateStart + 1;
 			}
 			else {
-				monthRow.append("<td class='calendar-cell'></td>");
+				monthRow.append("<td class='calendar-cell out-of-month'></td>");
 				dateStart = dateStart + 1;
 			}
 		}
