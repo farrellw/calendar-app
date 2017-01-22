@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	initialPageLoad();
-	$('.calendar').on('dblclick', '.calendar-cell', loadWeeklyView);
+	$('.calendar').on('dblclick', '.month-cell', loadWeeklyView);
 	$('.cal-header').on('click', 'button', navigate);
 	$('.change-view-buttons').on('click', 'button', changeView);
 	$('.calendar').on('click', '.add-event', addEvent);

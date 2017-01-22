@@ -26,7 +26,7 @@ function loadMonthView(date) {
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
 				var dateToCheckEvents = month + " " + dateStart + ", " + year;
-				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'><p></p></div></td>");
+				monthRow.append("<td class='calendar-cell month-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'><p></p></div></td>");
 				if (eventObjectLiteral[dateToCheckEvents]) {
 					var eventsToPutInCell = eventObjectLiteral[dateToCheckEvents].numberOfEvents() + " events";
 				} else {
