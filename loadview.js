@@ -26,8 +26,15 @@ function loadMonthView(date) {
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
 				var dateToCheckEvents = month + " " + dateStart + ", " + year;
-				// console.log(dateToCheckEvents);
-				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>");
+				
+
+				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'><p></p></div></td>");
+				if (eventObjectLiteral[dateToCheckEvents]) {
+					var eventsToPutInCell = eventObjectLiteral[dateToCheckEvents].numberOfEvents() + " events";
+				} else {
+					var eventsToPutInCell = " ";
+				}
+				$('.calendar').find('p').last().text(eventsToPutInCell);
 				dateStart = dateStart + 1;
 			}
 			else {
@@ -54,17 +61,32 @@ function loadWeeklyView(inputCell){
 	// $('.calendar').attr('data-date', date);
 	var month = $('.calendar').data("month");
 	var year = $('.calendar').data("year");
-	var dayOfMonth = $object.text();
+	// var dayOfMonth = parseInt($object.children().first().text());
 	var week = $object.parent();
-
+	var firstDayOfWeek = parseInt(week.find('.cell-header').first().text());
 	$('.calendar').empty();
 	$('.calendar').data("type", "week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
 	var table = $('.calendar').children().first();
-	table.prepend("<tr class='week-headers'></tr>");
-	calendarHeaders = table.find("tr").first();
+
+	var firstOfMonth = month + ' 1,' + year;
+	var startDate = new Date(firstOfMonth);
+	var daysIntoWeek = startDate.getDay() + 1;
+	table.prepend("<tr class='week-view-row'></tr>");
+	var weekRow = table.find("tr").first();
+	console.log("Am I in a loop?")
 	for (var i = 0; i < 7; i++) {
-		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
+		var dayOfMonth = firstDayOfWeek + i;
+		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div></td>");
+		var eventHolder = weekRow.find('ul').last()
+		var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
+		if (eventObjectLiteral[dateToCheckEvents]) {
+			var events = eventObjectLiteral[dateToCheckEvents].events;
+		} else {
+			var events = [];
+		}
+		for (var j = 0; j < events.length; j++) {
+			eventHolder.append("<li>" + events[j] + "</>");
+		}
 	}
-	table.append(week);
 }

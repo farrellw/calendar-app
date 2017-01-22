@@ -11,7 +11,6 @@ function changeView() {
 	var year = $('.calendar').data("year");
 	if (switchTo == "week") {
 		loadWeeklyView(1);
-
 	} else if (switchTo == "month") {
 		var dateToSwitch = month + " 1, " + year;
 		loadMonthView(new Date(dateToSwitch));
@@ -20,9 +19,9 @@ function changeView() {
 
 function daysInMonth(month, datePossibilities) {
 	if (datePossibilities[month]) {
-		return datePossibilities[month]
+		return datePossibilities[month];
 	} else {
-		return 31
+		return 31;
 	}
 }
 
