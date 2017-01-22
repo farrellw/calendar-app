@@ -9,19 +9,55 @@ body {
     height: 100%;
 }
 
-table {
+.cal-header {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    background: #E89779;
+    height: 10%;
+    color: white;
+}
+
+.cal-header button {
+    background-color: #70C4AF;
+    border: solid;
+    color: gray;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.cal-header h2 {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Patua One', cursive;
+    letter-spacing: 3px;
+    word-spacing: 150%; 
+}
+
+.calendar {
+    height: 75%;
+    margin: auto;
+    padding: 5px;
+}
+
+.calendar table {
     background: #fff;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     width: 100%;
     height: 100%;
     table-layout: fixed;
     border-width: 200%;
     border: solid black;
-    font-family: 'Open Sans', sans-serif;
-    border-collapse: collapse;
+    border-collapse: collapse;  
 }
 
 table th {
+    font-size: 18px;
     height: 14%;
     border: 1px solid black;
     border-bottom: 2px solid black;
@@ -40,15 +76,19 @@ td .cell-header {
 td .cell-body {
     height: 90%;
     padding-top: 2px;
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
-.out-of-month {
+.calendar .out-of-month {
    background: #C0C0C0; 
 }
 
 .month-row .cell-body {
     text-align: center;
+}
+
+.month-row .cell-header {
+    padding-left: 6px;
 }
 
 .week-view-row .cell-header {
@@ -61,44 +101,9 @@ td .cell-body {
     height: 75%;
 }
 
-.week-view-row .update-events {
-    text-align: center;
+.week-view-row .add-events-div {
     height: 10%;
-}
-
-h2 {
-    display: inline-block;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-family: 'Patua One', cursive;
-    letter-spacing: 3px;
-    word-spacing: 150%; 
-}
-
-.calendar {
-    height: 75%;
-    margin: auto;
-    padding: 5px;
-}
-
-.navigation-buttons {
-    width: 100%;
     text-align: center;
-    display: inline-block;
-    background: #E89779;
-    height: 10%;
-    color: white;
-}
-
-.navigation-buttons button {
-    background-color: #70C4AF;
-    border: solid;
-    color: gray;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
 }
 
 .change-view-buttons {
@@ -117,5 +122,17 @@ h2 {
 }
 
 .delete-event {
+    width: 30%;
+    padding: 4px 8px;
+    text-decoration: none;
     background: red;
+    margin-right: 10px
+}
+
+.edit-event {
+    width: 30%;
+    padding: 4px 8px;
+    text-decoration: none;
+    background: yellow;
+    margin-left: 10px
 }

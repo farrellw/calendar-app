@@ -71,7 +71,7 @@ function loadWeeklyView(inputCell){
 	var weekRow = table.find("tr").first();
 	for (var i = 0; i < 7; i++) {
 		var dayOfMonth = firstDayOfWeek + i;
-		weekRow.append("<td class='calendar-cell' data-date=" + dayOfMonth + "><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div><div class='update-events'><input type='text' name='new-event'><br><button class='add-event'>Add Event</button></div></td>");
+		weekRow.append("<td class='calendar-cell' data-date=" + dayOfMonth + "><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div><div class='add-events-div'><input type='text' name='new-event'><br><button class='add-event'>Add Event</button></div></td>");
 		var eventHolder = weekRow.find('ul').last()
 		var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
 		if (eventObjectLiteral[dateToCheckEvents]) {
@@ -80,7 +80,7 @@ function loadWeeklyView(inputCell){
 			var events = [];
 		}
 		for (var j = 0; j < events.length; j++) {
-			eventHolder.append("<li>" + events[j] + "<button class='delete-event'></button></li>");
+			eventHolder.append("<li>" + events[j] + "<br><button class='delete-event'></button><button class='edit-event'></button></li>");
 		}
 
 	}
