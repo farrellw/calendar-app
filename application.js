@@ -1,14 +1,15 @@
 $(document).ready(function() {
 	initialPageLoad();
 	$('.calendar').on('dblclick', '.calendar-cell', loadWeeklyView);
-	$('.navigation-buttons').on('click', 'button', navigate);
+	$('.cal-header').on('click', 'button', navigate);
 	$('.change-view-buttons').on('click', 'button', changeView);
 	$('.calendar').on('click', '.add-event', addEvent);
 	$('.calendar').on('click', '.delete-event', deleteEvent);
 	$('.calendar').on('click', '.edit-event', editEvent);
 });
 
-
+predictableSeeding(seedCal, seedEvents);
+massSeeding(seedEvents);
 
 function changeView() {
 	var switchTo = $(this).data("type");
