@@ -10,9 +10,26 @@ DaysEvents.prototype.numberOfEvents = function(){
 	return this.events.length;
 }
 
+DaysEvents.prototype.deleteEvent = function(event) {
+	var arrayOfEvents = this.events;
+	var i = arrayOfEvents.indexOf(event);
+	arrayOfEvents.splice(i, 1);
+}
+
 // Maps the key(date_string) with the value(daysEventObject)
 var eventObjectLiteral = {
 
+}
+
+function deleteEvent() {
+	var liElementHolder = $(this).closest('li')
+	var weekHolder = $(this).closest('.week-display');
+	var fullDate = weekHolder.data('monthval') + " " + $(this).closest('.calendar-cell').data('date') + ", " + weekHolder.data('yearval');
+	var eventObject = eventObjectLiteral[fullDate];
+	var itemToDelete = liElementHolder.text();
+	var eventObject = eventObjectLiteral[fullDate]
+	eventObject.deleteEvent(itemToDelete);
+	liElementHolder.remove()
 }
 
 function addEvent() {
@@ -21,7 +38,7 @@ function addEvent() {
 	inputBox.val('');
 	if (inputText) {
 		var listOfEvents = $(this).closest('.calendar-cell').find('ul');
-		listOfEvents.append("<li>" + inputText + "</>");
+		listOfEvents.append("<li>" + inputText + "<button class='delete-event'></button></>");
 		var weekHolder = $(this).closest('.week-display');
 		var fullDate = weekHolder.data('monthval') + " " + $(this).closest('.calendar-cell').data('date') + ", " + weekHolder.data('yearval');
 		var eventObject = eventObjectLiteral[fullDate];

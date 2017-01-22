@@ -26,8 +26,6 @@ function loadMonthView(date) {
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
 				var dateToCheckEvents = month + " " + dateStart + ", " + year;
-				
-
 				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'><p></p></div></td>");
 				if (eventObjectLiteral[dateToCheckEvents]) {
 					var eventsToPutInCell = eventObjectLiteral[dateToCheckEvents].numberOfEvents() + " events";
@@ -58,17 +56,14 @@ function loadWeeklyView(inputCell){
 	} else {
 		var $object = $(this);
 	}
-	// $('.calendar').attr('data-date', date);
 	var month = $('.calendar').data("month");
 	var year = $('.calendar').data("year");
-	// var dayOfMonth = parseInt($object.children().first().text());
 	var week = $object.parent();
 	var firstDayOfWeek = parseInt(week.find('.cell-header').first().text());
 	$('.calendar').empty();
 	$('.calendar').data("type", "week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
 	var table = $('.calendar').children().first();
-
 	var firstOfMonth = month + ' 1,' + year;
 	var startDate = new Date(firstOfMonth);
 	var daysIntoWeek = startDate.getDay() + 1;
@@ -85,7 +80,7 @@ function loadWeeklyView(inputCell){
 			var events = [];
 		}
 		for (var j = 0; j < events.length; j++) {
-			eventHolder.append("<li>" + events[j] + "</>");
+			eventHolder.append("<li>" + events[j] + "<button class='delete-event'></button></li>");
 		}
 
 	}
