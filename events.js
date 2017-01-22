@@ -34,9 +34,11 @@ function editEvent() {
 	var eventObject = eventObjectLiteral[fullDate];
 	var itemToEdit = liElementHolder.text();
 	var newItem = prompt("Edit Event", itemToEdit);
-	liElementHolder.text(newItem);
-	liElementHolder.append("<br><button class='delete-event'></button><button class='edit-event'></button>");
-	eventObject.editEvent(itemToEdit, newItem);
+	if (newItem) {
+		liElementHolder.text(newItem);
+		liElementHolder.append("<br><button class='delete-event'></button><button class='edit-event'></button>");
+		eventObject.editEvent(itemToEdit, newItem);
+	}
 }
 
 function deleteEvent() {
