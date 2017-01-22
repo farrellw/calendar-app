@@ -19,9 +19,9 @@ function changeView() {
 
 function daysInMonth(month, datePossibilities) {
 	if (datePossibilities[month]) {
-		return datePossibilities[month]
+		return datePossibilities[month];
 	} else {
-		return 31
+		return 31;
 	}
 }
 

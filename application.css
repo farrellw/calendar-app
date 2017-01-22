@@ -22,7 +22,7 @@ table th {
 
 table td{
     border: 1px solid black;
-
+    height: 15%;
 }
 
 td .cell-header {
@@ -34,12 +34,24 @@ td .cell-body {
     height: 90%;
     padding-top: 2px;
     word-wrap:break-word;
+}
+
+.month-row .cell-body {
     text-align: center;
 }
 
-h3 {
+.week-view-row .cell-header {
+    border-bottom: 1px solid black;
+    font-size: 150%;
     text-align: center;
+}
+
+
+h2 {
+    /*text-align: center;*/
     display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .calendar {
@@ -53,4 +65,19 @@ h3 {
     width: 100%;
     text-align: center;
     display: inline-block;
+}
+
+.change-view-buttons {
+    text-align: center;
+}
+
+.change-view-button {
+    background-color: #58a;
+    border: solid;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

@@ -28,13 +28,13 @@ function loadMonthView(date) {
 				var dateToCheckEvents = month + " " + dateStart + ", " + year;
 				
 
-				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>");
+				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'><p></p></div></td>");
 				if (eventObjectLiteral[dateToCheckEvents]) {
-					var eventsToPutInCell = eventObjectLiteral[dateToCheckEvents].numberOfEvents();
+					var eventsToPutInCell = eventObjectLiteral[dateToCheckEvents].numberOfEvents() + " events";
 				} else {
-					var eventsToPutInCell = 0;
+					var eventsToPutInCell = " ";
 				}
-				$('.calendar').find('.cell-body').last().text(eventsToPutInCell);
+				$('.calendar').find('p').last().text(eventsToPutInCell);
 				dateStart = dateStart + 1;
 			}
 			else {
@@ -77,7 +77,7 @@ function loadWeeklyView(inputCell){
 	console.log("Am I in a loop?")
 	for (var i = 0; i < 7; i++) {
 		var dayOfMonth = firstDayOfWeek + i;
-		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + (dayOfMonth + i) + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div></td>");
+		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div></td>");
 		var eventHolder = weekRow.find('ul').last()
 		var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
 		if (eventObjectLiteral[dateToCheckEvents]) {
