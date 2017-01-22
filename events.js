@@ -10,9 +10,6 @@ DaysEvents.prototype.numberOfEvents = function(){
 	return this.events.length;
 }
 
-var eventOne = new DaysEvents();
-eventOne.addEvent("Skating");
-
 // Maps the key(date_string) with the value(daysEventObject)
 var eventObjectLiteral = {
 
