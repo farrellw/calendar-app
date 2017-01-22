@@ -16,22 +16,25 @@ function changeWeek(direction) {
 	var firstOfMonth = currentMonth + ' 1,' + currentYear;
 	var startDate = new Date(firstOfMonth);
 	var daysIntoWeek = startDate.getDay();
-	var currentIndex = currentDayNumber + daysIntoWeek;
+	var currentIndex = currentDayNumber - 1 +  daysIntoWeek;
 	var totalDays = daysInMonth(currentMonth, daysByMonth);
 	if (direction == "next") {
 		var targetIndex = currentIndex += 7;
 		targetDayNumber = currentDayNumber + 7;
-		if (targetDayNumber < totalDays) {
+		if (targetDayNumber <= totalDays) {
 			
 		} else {
-			console.log("Going up a month");
 			targetDayNumber = 1;
-			targetIndex = 1;
+			targetIndex = 0;
 			currentMonth = currentMonth + 1;
 			if (currentMonth > 12) {
 				currentMonth = 1;
 				currentYear = currentYear+ 1;
 			}
+			var firstOfMonth = currentMonth + ' 1,' + currentYear;
+			var startDate = new Date(firstOfMonth);
+			var daysIntoWeek = startDate.getDay();
+			targetIndex = targetIndex + daysIntoWeek;
 		}
 		var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 	} else if (direction == "previous") {
@@ -39,7 +42,7 @@ function changeWeek(direction) {
 		targetDayNumber = currentDayNumber - 7;
 		if (targetDayNumber >= 1) {
 
-		} else if (targetIndex >= 1 && targetDayNumber < 0) {
+		} else if (targetIndex >= 0 && targetDayNumber < 0) {
 			targetDayNumber = 1;
 			targetIndex = daysIntoWeek;
 
@@ -49,18 +52,17 @@ function changeWeek(direction) {
 				currentMonth = 12;
 				currentYear = currentYear - 1;
 			}
-			targetDayNumber = daysInMonth(currentMonth, daysByMonth) - 1;
+			targetDayNumber = daysInMonth(currentMonth, daysByMonth);
 			firstOfMonth = currentMonth + " 1, " + currentYear;
 			var startDate = new Date(firstOfMonth);
 			var daysIntoWeek = startDate.getDay();
-			targetIndex = parseInt(daysIntoWeek) + targetDayNumber;
+			targetIndex = parseInt(daysIntoWeek) + targetDayNumber - 1;
 		}
 		var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 	}
 	loadMonthView(new Date(dateToSwitch));
 	loadWeeklyView(targetIndex);
 }
-
 
 function changeMonth(direction){
 	var currentMonth = $('.calendar').data("month");

@@ -1,4 +1,4 @@
-var seedCal = [
+const seedCal = [
 	'12 20, 2016',
 	'1 1, 2017',
 	'1 6, 2017',
@@ -8,7 +8,7 @@ var seedCal = [
 	'2 20, 2017'
 ]
 
-var seedEvents = [
+const seedEvents = [
 	"Call Friend on Phone",
 	"Walk the dog",
 	"Go Golfing",
