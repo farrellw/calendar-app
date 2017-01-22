@@ -1,4 +1,5 @@
 function loadWeeklyView(inputCell){
+	console.log("in weekly view")
 	if (inputCell > 0 && inputCell <= 36) {
 		inputCell = inputCell - 1
 		var selector = ".calendar td:eq("+ inputCell + ")"
@@ -34,6 +35,7 @@ function loadMonthView(date) {
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 	var day = date.getDay();
+	console.log(day);
 	var date = date.getDate();
 	var firstOfMonth = month + ' 1,' + year;
 	var startDate = new Date(firstOfMonth)
@@ -44,9 +46,6 @@ function loadMonthView(date) {
 	$('.calendar').data('month', month);
 	$('.calendar').data('date', date);
 	$('.calendar').data('year', year);
-	$('.calendar').attr('data-month', month);
-	$('.calendar').attr('data-date', date);
-	$('.calendar').attr('data-year', year);
 	$('.calendar').append("<table class='month-display'></table>");
 	monthDisplay = $('.calendar').children().first();
 	for (var i = 0; i < 6; i++) {
@@ -55,7 +54,7 @@ function loadMonthView(date) {
 		for (var j = 0; j < 7; j++) {
 			if (dateStart >= 1 && dateStart <= daysToDisplay) {
 				var dateToCheckEvents = month + " " + dateStart + ", " + year
-				console.log(dateToCheckEvents);
+				// console.log(dateToCheckEvents);
 				monthRow.append("<td class='calendar-cell'><div class='cell-header'>" + dateStart + "</div><div class='cell-body'></div></td>")
 				dateStart = dateStart + 1
 			}
