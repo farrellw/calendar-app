@@ -7,9 +7,6 @@ DaysEvents.prototype.addEvent = function(event) {
 }
 
 DaysEvents.prototype.numberOfEvents = function(){
-	// console.log(events);
-	console.log(this);
-	console.log(this.events);
 	return this.events.length;
 }
 
@@ -37,7 +34,6 @@ var seedEvents = [
 	"Experience with a new code framework"
 ]
 
-console.log("Got here");
 eventObjectLiteral[seedCal[0]] = new DaysEvents();
 eventObjectLiteral[seedCal[0]].addEvent(seedEvents[0]);
 eventObjectLiteral[seedCal[0]].addEvent(seedEvents[1]);
