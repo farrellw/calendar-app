@@ -117,5 +117,15 @@ h2 {
 }
 
 .delete-event {
+    width: 30%;
     background: red;
+    /*padding-right: 10px;*/
+    margin-right: 10px
+}
+
+.edit-event {
+    width: 30%;
+    background: yellow;
+    /*padding-left: 10px;*/
+    margin-left: 10px
 }

@@ -80,7 +80,7 @@ function loadWeeklyView(inputCell){
 			var events = [];
 		}
 		for (var j = 0; j < events.length; j++) {
-			eventHolder.append("<li>" + events[j] + "<button class='delete-event'></button></li>");
+			eventHolder.append("<li>" + events[j] + "<br><button class='delete-event'></button><button class='edit-event'></button></li>");
 		}
 
 	}

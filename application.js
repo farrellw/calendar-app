@@ -5,18 +5,10 @@ $(document).ready(function() {
 	$('.change-view-buttons').on('click', 'button', changeView);
 	$('.calendar').on('click', '.add-event', addEvent);
 	$('.calendar').on('click', '.delete-event', deleteEvent);
+	$('.calendar').on('click', '.edit-event', editEvent);
 });
 
-function deleteEvent() {
-	var liElementHolder = $(this).closest('li')
-	var weekHolder = $(this).closest('.week-display');
-	var fullDate = weekHolder.data('monthval') + " " + $(this).closest('.calendar-cell').data('date') + ", " + weekHolder.data('yearval');
-	var eventObject = eventObjectLiteral[fullDate];
-	var itemToDelete = liElementHolder.text();
-	var eventObject = eventObjectLiteral[fullDate]
-	eventObject.deleteEvent(itemToDelete);
-	liElementHolder.remove()
-}
+
 
 function changeView() {
 	var switchTo = $(this).data("type");
