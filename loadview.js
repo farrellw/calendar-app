@@ -63,7 +63,7 @@ function loadWeeklyView(inputCell){
 	var year = $('.calendar').data("year");
 	// var dayOfMonth = parseInt($object.children().first().text());
 	var week = $object.parent();
-	var dayOfMonth = parseInt(week.find('.cell-header').first().text());
+	var firstDayOfWeek = parseInt(week.find('.cell-header').first().text());
 	$('.calendar').empty();
 	$('.calendar').data("type", "week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
@@ -72,16 +72,21 @@ function loadWeeklyView(inputCell){
 	var firstOfMonth = month + ' 1,' + year;
 	var startDate = new Date(firstOfMonth);
 	var daysIntoWeek = startDate.getDay() + 1;
-	table.prepend("<tr class='week-view-row'></tr>")
+	table.prepend("<tr class='week-view-row'></tr>");
 	var weekRow = table.find("tr").first();
+	console.log("Am I in a loop?")
 	for (var i = 0; i < 7; i++) {
-		// How many days in the week
-		console.log(dayOfMonth + daysIntoWeek - 7 + i);
-		// dayOfMonth = dayOfMonth + i
-
-		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + (dayOfMonth + i) + " " + daysOfWeek[i] + "</div><div class='cell-body'></div></td>")
+		var dayOfMonth = firstDayOfWeek + i;
+		weekRow.append("<td class='calendar-cell'><div class='cell-header'>" + (dayOfMonth + i) + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div></td>");
+		var eventHolder = weekRow.find('ul').last()
+		var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
+		if (eventObjectLiteral[dateToCheckEvents]) {
+			var events = eventObjectLiteral[dateToCheckEvents].events;
+		} else {
+			var events = [];
+		}
+		for (var j = 0; j < events.length; j++) {
+			eventHolder.append("<li>" + events[j] + "</>");
+		}
 	}
-
-	;
-	// table.append(week);
 }

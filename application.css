@@ -8,11 +8,11 @@ body {
 
 table {
     background: #fff;
-    border-collapse: collapse;
     color: #222;
     font-size: 13px;
     width: 100%;
     height: 100%;
+    table-layout: fixed;
 }
 
 table th {
@@ -32,16 +32,14 @@ td .cell-header {
 
 td .cell-body {
     height: 90%;
-    padding-top: 2px
+    padding-top: 2px;
+    word-wrap:break-word;
+    text-align: center;
 }
 
 h3 {
     text-align: center;
     display: inline-block;
-}
-
-.cell-body {
-    text-align: center;
 }
 
 .calendar {
