@@ -3,8 +3,7 @@ function initialPageLoad() {
 }
 
 function loadMonthView(date) {
-	$('.calendar').empty();
-	$('.calendar').data("type", "month");
+	$cal = emptyCalChangeType("month");
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 	var day = date.getDay();
@@ -15,8 +14,9 @@ function loadMonthView(date) {
 	daysToDisplay = daysInMonth(month, daysByMonth);
 	dateStart = 1 - daysIntoWeek;
 	$('.month-label').text(monthNames[month - 1] + " - " + year);
+	// setCalendarData(month, year);
 	$('.calendar').data('month', month);
-	$('.calendar').data('date', date);
+	// $('.calendar').data('date', date);
 	$('.calendar').data('year', year);
 	$('.calendar').append("<table class='month-display'></table>");
 	monthDisplay = $('.calendar').find('table').first();
@@ -40,9 +40,9 @@ function loadMonthView(date) {
 				dateStart = dateStart + 1;
 			}
 		}
-		// if (dateStart > daysToDisplay){
-		// 	break;
-		// }
+		if (dateStart > daysToDisplay){
+			break;
+		}
 	}
 	monthDisplay.prepend("<tr class='month-headers'></tr>")
 	calendarHeaders = monthDisplay.find("tr").first();
@@ -72,20 +72,16 @@ function loadWeeklyView(inputCell){
 		firstDayOfWeek = 1 - daysIntoWeek;
 	}
 	var daysIntoWeek = startDate.getDay() + 1;
-	$('.calendar').empty();
-	$('.calendar').data("type", "week");
+	$cal = emptyCalChangeType("week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
-	var table = $('.calendar').children().first();
-	var firstOfMonth = month + ' 1,' + year;
-	var startDate = new Date(firstOfMonth);
-	var daysIntoWeek = startDate.getDay() + 1;
+	var table = $('.calendar').find('table').first();
 	table.prepend("<tr class='week-view-row'></tr>");
 	var weekRow = table.find("tr").first();
 	var daysPossible = daysInMonth(month, daysByMonth)
 	for (var i = 0; i < 7; i++) {
 		var dayOfMonth = firstDayOfWeek + i;
 		if (dayOfMonth > 0 && dayOfMonth <= daysPossible){
-			weekRow.append("<td class='calendar-cell' data-date=" + dayOfMonth + "><div class='cell-header'>" + dayOfMonth + " - " + daysOfWeek[i] + "</div><div class='cell-body'><ul></ul></div><div class='add-events-div'><input type='text' name='new-event'><br><button class='add-event'>Add Event</button></div></td>");
+			weekRow.append(cellStringBuilder(dayOfMonth, daysOfWeek[i]))
 			var eventHolder = weekRow.find('ul').last()
 			var dateToCheckEvents = month + " " + dayOfMonth + ", " + year;
 			if (eventObjectLiteral[dateToCheckEvents]) {
@@ -100,4 +96,15 @@ function loadWeeklyView(inputCell){
 			weekRow.append("<td class='calendar-cell out-of-month'></td>");
 		}
 	}
+}
+
+function emptyCalChangeType(type){
+	var $cal = $('.calendar');
+	$cal.empty();
+	$cal.data("type", type);
+	return $cal;
+}
+
+function cellStringBuilder(dayOfMonth, dayOfWeek) {
+	return "<td class='calendar-cell' data-date=" + dayOfMonth + "><div class='cell-header'>" + dayOfMonth + " - " + dayOfWeek + "</div><div class='cell-body'><ul></ul></div><div class='add-events-div'><input type='text' name='new-event'><br><button class='add-event'>Add Event</button></div></td>"
 }
