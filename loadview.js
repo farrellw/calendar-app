@@ -3,7 +3,9 @@ function initialPageLoad() {
 }
 
 function loadMonthView(date) {
-	$cal = emptyCalChangeType("month");
+	var $cal = $('.calendar');
+	// $cal = emptyCalChangeType($cal, "month");
+	emptyDivChangeType($cal, "month");
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 	var day = date.getDay();
@@ -15,10 +17,9 @@ function loadMonthView(date) {
 	dateStart = 1 - daysIntoWeek;
 	$('.month-label').text(monthNames[month - 1] + " - " + year);
 	// setCalendarData(month, year);
-	$('.calendar').data('month', month);
-	// $('.calendar').data('date', date);
-	$('.calendar').data('year', year);
-	$('.calendar').append("<table class='month-display'></table>");
+	$cal.data('month', month);
+	$cal.data('year', year);
+	$cal.append("<table class='month-display'></table>");
 	monthDisplay = $('.calendar').find('table').first();
 	for (var i = 0; i < 6; i++) {
 		monthDisplay.append("<tr class='month-row'></tr>");
@@ -52,6 +53,7 @@ function loadMonthView(date) {
 }
 
 function loadWeeklyView(inputCell){
+	var $cal = $('.calendar');
 	var month = $('.calendar').data("month");
 	var year = $('.calendar').data("year");
 	var firstOfMonth = month + ' 1,' + year;
@@ -72,7 +74,7 @@ function loadWeeklyView(inputCell){
 		firstDayOfWeek = 1 - daysIntoWeek;
 	}
 	var daysIntoWeek = startDate.getDay() + 1;
-	$cal = emptyCalChangeType("week");
+	$cal = emptyDivChangeType($cal, "week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
 	var table = $('.calendar').find('table').first();
 	table.prepend("<tr class='week-view-row'></tr>");
@@ -98,11 +100,10 @@ function loadWeeklyView(inputCell){
 	}
 }
 
-function emptyCalChangeType(type){
-	var $cal = $('.calendar');
-	$cal.empty();
-	$cal.data("type", type);
-	return $cal;
+function emptyDivChangeType(div, type){
+	div.empty();
+	div.data("type", type);
+	return div;
 }
 
 function cellStringBuilder(dayOfMonth, dayOfWeek) {
