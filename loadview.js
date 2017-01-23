@@ -62,16 +62,16 @@ function loadWeeklyView(inputCell){
 		var $object = $(selector);
 	} else {
 		var cellNumber = parseInt($(this).find('.cell-header').text())
-		var inputCell = cellNumber + parseInt(daysIntoWeek) - 1;
+		var inputCell = parseInt(daysIntoWeek) + cellNumber - 1;
 		var selector = ".calendar td:eq("+ inputCell + ")";
 		var $object = $(selector);
 	}
-	var daysIntoWeek = startDate.getDay() + 1
 	var week = $object.parent();
 	var firstDayOfWeek = parseInt(week.find('.cell-header').first().text());
 	if (!firstDayOfWeek) {
-		firstDayOfWeek = 0 - inputCell + 1;
+		firstDayOfWeek = 1 - daysIntoWeek;
 	}
+	var daysIntoWeek = startDate.getDay() + 1;
 	$('.calendar').empty();
 	$('.calendar').data("type", "week");
 	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
