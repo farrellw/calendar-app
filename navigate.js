@@ -1,13 +1,3 @@
-function navigate() {
-	var direction = $(this).attr("class");
-	var typeOfView = $('.calendar').data("type");
-	if (typeOfView == "month") {
-		changeMonth(direction);
-	}else if (typeOfView == 'week') {
-		changeWeek(direction);	
-	}
-}
-
 function changeWeek(direction) {
 	var currentMonth = $('.calendar').data("month");
 	var currentYear = $('.calendar').data("year");
@@ -60,8 +50,7 @@ function changeWeek(direction) {
 		}
 		var dateToSwitch = currentMonth + ' ' + (targetDayNumber) + ', ' + currentYear;
 	}
-	loadMonthView(new Date(dateToSwitch));
-	loadWeeklyView(targetIndex);
+	return [dateToSwitch, targetIndex];
 }
 
 function changeMonth(direction){
@@ -86,5 +75,5 @@ function changeMonth(direction){
 		}
 		var dateToSwitch = monthToDisplay + ' 1, ' + yearToDisplay;
 	}
-	loadMonthView(new Date(dateToSwitch));
+	return dateToSwitch;
 }

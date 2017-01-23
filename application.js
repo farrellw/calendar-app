@@ -11,6 +11,19 @@ $(document).ready(function() {
 predictableSeeding(seedCal, seedEvents);
 massSeeding(seedEvents);
 
+function navigate() {
+	var direction = $(this).attr("class");
+	var typeOfView = $('.calendar').data("type");
+	if (typeOfView == "month") {
+		var targetDate = changeMonth(direction);
+		loadMonthView(new Date(targetDate))
+	}else if (typeOfView == 'week') {
+		var targetDate = changeWeek(direction);	
+		loadMonthView(new Date(targetDate[0]));
+		loadWeeklyView(targetDate[1]);
+	}
+}
+
 function changeView() {
 	var switchTo = $(this).data("type");
 	var month = $('.calendar').data("month");
