@@ -10,10 +10,9 @@ Do this all without a server, and without the page ever refreshing.
 Build in good, object oriented code.
 As a stretch, implement Angular 2.
 
-Let's get after it.
+Let's get after it. Calendar is hosted at: http://calendar-application-challenge.herokuapp.com/index.html
 
 Tech Used:
 JavaScript.
 Object-Oriented-Design.
 JQuery for selecting elements on the page.
-Angular 2.
