@@ -4,7 +4,6 @@ function initialPageLoad() {
 
 function loadMonthView(date) {
 	var $cal = $('.calendar');
-	// $cal = emptyCalChangeType($cal, "month");
 	emptyDivChangeType($cal, "month");
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
@@ -16,7 +15,6 @@ function loadMonthView(date) {
 	daysToDisplay = daysInMonth(month, daysByMonth);
 	dateStart = 1 - daysIntoWeek;
 	$('.month-label').text(monthNames[month - 1] + " - " + year);
-	// setCalendarData(month, year);
 	$cal.data('month', month);
 	$cal.data('year', year);
 	$cal.append("<table class='month-display'></table>");
@@ -33,7 +31,7 @@ function loadMonthView(date) {
 				} else {
 					var eventsToPutInCell = " ";
 				}
-				$('.calendar').find('p').last().text(eventsToPutInCell);
+				$cal.find('p').last().text(eventsToPutInCell);
 				dateStart = dateStart + 1;
 			}
 			else {
@@ -45,7 +43,7 @@ function loadMonthView(date) {
 			break;
 		}
 	}
-	monthDisplay.prepend("<tr class='month-headers'></tr>")
+	monthDisplay.prepend("<tr class='month-headers'></tr>");
 	calendarHeaders = monthDisplay.find("tr").first();
 	for (var i = 0; i < 7; i++) {
 		calendarHeaders.append("<th class='calendar-header'>" + daysOfWeek[i] + "</th>");
@@ -54,8 +52,8 @@ function loadMonthView(date) {
 
 function loadWeeklyView(inputCell){
 	var $cal = $('.calendar');
-	var month = $('.calendar').data("month");
-	var year = $('.calendar').data("year");
+	var month = $cal.data("month");
+	var year = $cal.data("year");
 	var firstOfMonth = month + ' 1,' + year;
 	var startDate = new Date(firstOfMonth);
 	var daysIntoWeek = startDate.getDay();
@@ -74,9 +72,9 @@ function loadWeeklyView(inputCell){
 		firstDayOfWeek = 1 - daysIntoWeek;
 	}
 	var daysIntoWeek = startDate.getDay() + 1;
-	$cal = emptyDivChangeType($cal, "week");
-	$('.calendar').append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
-	var table = $('.calendar').find('table').first();
+	emptyDivChangeType($cal, "week");
+	$cal.append("<table class='week-display' data-monthval='" + month + "' data-yearval='" + year + "'></table>");
+	var table = $cal.find('table').first();
 	table.prepend("<tr class='week-view-row'></tr>");
 	var weekRow = table.find("tr").first();
 	var daysPossible = daysInMonth(month, daysByMonth)

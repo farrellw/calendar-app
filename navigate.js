@@ -76,7 +76,6 @@ function changeMonth(direction){
 			var yearToDisplay = currentYear + 1;
 		}
 		var dateToSwitch = monthToDisplay + ' 1, ' + yearToDisplay;
-		loadMonthView(new Date(dateToSwitch));
 	}else if (direction == "previous") {
 		if (currentMonth <= 1) {
 			var monthToDisplay = 12;
@@ -86,6 +85,6 @@ function changeMonth(direction){
 			var yearToDisplay = currentYear;
 		}
 		var dateToSwitch = monthToDisplay + ' 1, ' + yearToDisplay;
-		loadMonthView(new Date(dateToSwitch));
 	}
+	loadMonthView(new Date(dateToSwitch));
 }
