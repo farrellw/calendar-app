@@ -1,14 +1,14 @@
-var seedCal = [
+const seedCal = [
 	'12 20, 2016',
 	'1 1, 2017',
 	'1 6, 2017',
 	'1 24, 2017',
-	'1 26, 2017',
+	'1 30, 2017',
 	'2 10, 2017',
 	'2 20, 2017'
 ]
 
-var seedEvents = [
+const seedEvents = [
 	"Call Friend on Phone",
 	"Walk the dog",
 	"Go Golfing",
